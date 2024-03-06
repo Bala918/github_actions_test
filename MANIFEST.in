@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include github_actions_test *.css
+recursive-include github_actions_test *.csv
+recursive-include github_actions_test *.html
+recursive-include github_actions_test *.ico
+recursive-include github_actions_test *.js
+recursive-include github_actions_test *.json
+recursive-include github_actions_test *.md
+recursive-include github_actions_test *.png
+recursive-include github_actions_test *.py
+recursive-include github_actions_test *.svg
+recursive-include github_actions_test *.txt
+recursive-exclude github_actions_test *.pyc
