@@ -1,0 +1,36 @@
+name: Indentation and Vulnerability Check
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  indentation-check:
+    name: 'Indentation Check'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install YAMLLint
+        run: |
+          pip install yamllint
+
+      - name: Check YAML indentation
+        run: yamllint .
+
+  vulnerability-check:
+    name: 'Vulnerability Check'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install and run pip-audit
+        run: |
+          pip install pip-audit
+          pip-audit .
+
