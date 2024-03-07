@@ -32,16 +32,4 @@ jobs:
       - name: Run Semgrep
         run: |
           semgrep --config=semgrep_rules.yaml . > semgrep_output.txt
-        continue-on-error: true
-
-      - name: Check Semgrep results
-        run: |
-          echo "Semgrep found issues:"
-          semgrep_output=$(cat semgrep_output.txt)
-          if [ -n "$semgrep_output" ]; then
-            echo "$semgrep_output"
-            echo "Semgrep found issues."
-            exit 1
-          else
-            echo "No issues found by Semgrep."
-          fi
+        continue-on-error: false  
