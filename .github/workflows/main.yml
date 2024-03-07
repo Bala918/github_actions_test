@@ -31,10 +31,4 @@ jobs:
 
       - name: Run Semgrep
         run: |
-          semgrep --config=semgrep/semgrep_rules.yaml .
-          exit_code=$?
-          echo exit_code
-          if [ $exit_code -ne 0 ]; then
-            echo "Semgrep found issues. Exiting with code $exit_code."
-            exit 1
-          fi
+          semgrep --config=semgrep/semgrep_rules.yaml . --error          
