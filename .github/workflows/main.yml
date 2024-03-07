@@ -31,5 +31,5 @@ jobs:
 
       - name: Run Semgrep
         run: |
-          semgrep --config=semgrep_rules.yaml . > semgrep_output.txt
+          semgrep --config=semgrep_rules.yaml .
         continue-on-error: false  
