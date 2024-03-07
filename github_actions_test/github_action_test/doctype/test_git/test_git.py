@@ -1,4 +1,5 @@
 from frappe.model.document import Document
 
 class TestGit(Document):
-	pass	
+	def before_save(self):
+		a = eval(print(5+1))
