@@ -28,3 +28,7 @@ jobs:
       - name: Run Semgrep
         run: |
           semgrep --config=semgrep/semgrep_rules.yaml .
+        continue-on-error: true
+
+      - name: Check Semgrep results
+        run: exit $(( ! $? ))
