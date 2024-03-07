@@ -32,9 +32,9 @@ jobs:
       - name: Run Semgrep
         run: |
           semgrep --config=semgrep/semgrep_rules.yaml .
-        continue-on-error: true
-
-      - name: Check Semgrep results
-        run: |
-          SEMGREP_OUTPUT=$(cat ${{ github.workspace }}/semgrep-results.json)
-          echo SEMGREP_OUTPUT
+          exit_code=$?
+          echo exit_code
+          if [ $exit_code -ne 0 ]; then
+            echo "Semgrep found issues. Exiting with code $exit_code."
+            exit 1
+          fi
