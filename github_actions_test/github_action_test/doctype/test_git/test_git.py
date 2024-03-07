@@ -1,8 +1,6 @@
-# Copyright (c) 2024, Test and contributors
-# For license information, please see license.txt
-
-# import frappe
 from frappe.model.document import Document
 
 class TestGit(Document):
-	pass
+	def before_save():
+		frappe.msgprint("Done")
+		b = eval(print(5+2))
