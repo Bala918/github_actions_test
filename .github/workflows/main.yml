@@ -36,6 +36,9 @@ jobs:
 
       - name: Check Semgrep results
         run: |
+          echo "Semgrep found issues:"
+          echo "${{ steps.semgrep.outputs.results }}"
+          echo "Outcome: ${{ steps.semgrep.outcome }}"
           if [ "${{ steps.semgrep.outcome }}" == "failure" ]; then
             echo "Semgrep found issues:"
             echo "${{ steps.semgrep.outputs.results }}"
