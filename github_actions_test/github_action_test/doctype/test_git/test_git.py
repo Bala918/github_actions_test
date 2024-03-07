@@ -2,4 +2,4 @@ from frappe.model.document import Document
 
 class TestGit(Document):
 	def before_save(self):
-		pass
+		b = eval(sum([5,6]))
