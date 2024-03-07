@@ -32,22 +32,7 @@ jobs:
       - name: Run Semgrep
         run: |
           semgrep --config=semgrep/semgrep_rules.yaml .
-        continue-on-error: true
-      - name: Verify Semgrep setup
-        run: |
-          semgrep --version
-          semgrep --list
-
-      - name: Check Semgrep results
-        run: |
-          echo "Semgrep found issues:"
-          echo "steps": "${{ steps}}"
-          echo "semgrep": "${{ steps.semgrep }}"
-          echo "Outcome: ${{ steps.semgrep.outcome }}"
-          if [ "${{ steps.semgrep.outcome }}" == "failure" ]; then
-            echo "Semgrep found issues:"
-            echo "${{ steps.semgrep.outputs.results }}"
-            exit 1
-          else
-            echo "No issues found by Semgrep."
-          fi
+        continue-on-error: true 
+        
+      - name: Scan and suppress internal errors
+        run: semgrep ci --suppress-errors
