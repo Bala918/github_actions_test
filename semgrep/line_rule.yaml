@@ -8,6 +8,6 @@ rules:
       _
       _
       _
-      _)
+      ...)
   languages: [python]
   severity: WARNING
