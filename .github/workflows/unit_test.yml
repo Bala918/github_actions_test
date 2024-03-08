@@ -30,21 +30,19 @@ jobs:
     - name: Identify modified Python test files
       id: find_files
       run: |
-        echo "::set-output name=modified_test_files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E 'test.*\.py')"
+        echo "::set-output name=modified_test_files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '.py')"
         
     - name: Install Frappe framework
       run: |
         pip install frappe
     
 
-    - name: Run unit tests for modified test files
+    - name: Run unit tests for modified files
       run: |
-        echo "steps: ${{ steps }}"
-        echo "findfiles: ${{ steps.find_files }}"
-        echo "output: ${{ steps.find_files.outputs}}"
-        echo "file : ${{ steps.find_files.outputs.modified_test_files }}"
-        if [ -n "${{ steps.find_files.outputs.modified_test_files }}" ]; then
-          python -m unittest discover -s $(dirname "${{ steps.find_files.outputs.modified_test_files }}") -p 'test*.py'
-        else
-          echo "No modified test files found, skipping tests."
-        fi
+        modified_files="${{ steps.find_files.outputs.modified_files }}"
+        while IFS= read -r file; do
+          test_file=$(echo "$file" | sed 's|/|/test_|' | sed 's|\.py$|.py|')
+          if [ -f "$test_file" ]; then
+            python -m unittest $test_file
+          fi
+        done <<< "$modified_files"
