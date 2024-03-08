@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestTestGit(FrappeTestCase):
+class TestGitWorkflow(FrappeTestCase):
 	pass

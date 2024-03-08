@@ -21,7 +21,7 @@
  "modified": "2024-03-06 16:38:59.041774",
  "modified_by": "Administrator",
  "module": "github_action_test",
- "name": "Test Git",
+ "name": "Git Workflow",
  "owner": "Administrator",
  "permissions": [
   {
