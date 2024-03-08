@@ -31,9 +31,4 @@ jobs:
 
       - name: Run Semgrep
         run: |
-          semgrep --config=semgrep/semgrep_rules.yaml --config=semgrep/code_quality.yaml . --error 
-          continue-on-error: true
-
-      - name: Check Semgrep Results
-        run: |
-          echo "${{ steps.semgrep.outputs}}
+          semgrep --config=semgrep/semgrep_rules.yaml --config=semgrep/code_quality.yaml . --error           
