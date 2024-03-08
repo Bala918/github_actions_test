@@ -1,15 +1,13 @@
 rules:
-  - id: function-with-more-than-5-lines
-    patterns:
-      - pattern: |
-          def $FUNCTIONNAME(...):
-              -
-              -
-              -
-              -
-              -
-              ...
-    message: "Function '{{ FUNCTIONNAME }}' has more than 5 lines."
-    severity: INFO
-    languages:
-      - python
+- id: func-with-many-statements
+  message: 'Function with more than 5 statements.'
+  pattern: |
+    (def _ ... :
+      _
+      _
+      _
+      _
+      _
+      _)
+  languages: [python]
+  severity: WARNING
