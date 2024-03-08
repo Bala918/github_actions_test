@@ -42,6 +42,7 @@ jobs:
         echo "steps: ${{ steps }}"
         echo "findfiles: ${{ steps.find_files }}"
         echo "output: ${{ steps.find_files.outputs}}"
+        echo "file : ${{ steps.find_files.outputs.modified_test_files }}"
         if [ -n "${{ steps.find_files.outputs.modified_test_files }}" ]; then
           python -m unittest discover -s $(dirname "${{ steps.find_files.outputs.modified_test_files }}") -p 'test*.py'
         else
