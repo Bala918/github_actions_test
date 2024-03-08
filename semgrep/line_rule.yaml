@@ -2,10 +2,14 @@ rules:
   - id: function-with-more-than-5-lines
     patterns:
       - pattern: |
-          def $FUNCTIONNAME(...):
+          def $FUNCTIONNAME($ARGUMENTS):
               $*_BODY
-              $BODY_LINES:matches ^\s+.
-              {{ and len($BODY_LINES) > 5 }}
+              $BODY_LINES: [
+                  _,
+                  {% if and(len($BODY_LINES) > 5) %}
+                  ...
+                  {% endif %}
+              ]
     message: "Function '{{ .FUNCTIONNAME }}' has more than 5 lines."
     severity: INFO
     languages:
