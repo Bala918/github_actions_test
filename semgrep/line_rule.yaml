@@ -1,0 +1,12 @@
+rules:
+  - id: function-with-more-than-5-lines
+    patterns:
+      - pattern: |
+          def $function_name($arguments):
+              $*_body
+              $body_lines:matches ^\s+.
+              {{ and len($body_lines) > 5 }}
+    message: "Function '{{ .function_name }}' has more than 5 lines."
+    severity: INFO
+    languages:
+      - python
