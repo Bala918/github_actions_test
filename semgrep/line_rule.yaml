@@ -3,9 +3,9 @@ rules:
     patterns:
       - pattern: |
           def $function_name($arguments):
-              $*_body
-              $body_lines:matches ^\s+.
-              {{ and len($body_lines) > 5 }}
+              $*_BODY
+              $BODY_LINES:matches ^\s+.
+              {{ and len($BODY_LINES) > 5 }}
     message: "Function '{{ .function_name }}' has more than 5 lines."
     severity: INFO
     languages:
