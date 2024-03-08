@@ -1,5 +1,6 @@
 from frappe.model.document import Document
 
 class GitWorkflow(Document):
-	def before_save():
-		frappe.msgprint("Done")		
+	def sum_of_list(self):
+		a = sum([5,5,5])
+		return a	
