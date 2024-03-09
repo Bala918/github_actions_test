@@ -30,7 +30,7 @@ jobs:
     - name: Identify modified Python test files
       id: find_files
       run: |
-        echo "::set-output name=modified_test_files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '.py')"
+       echo "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '.py')" >> $GITHUB_STATE
         
     - name: Install Frappe framework
       run: |
