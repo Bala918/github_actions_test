@@ -27,11 +27,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  # Replace with your requirements file if needed
 
-    - name: Identify modified Python test files
+    - name: Identify modified Python files
       id: find_files
       run: |
-       echo "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '.py')" >> $GITHUB_STATE
-        
+        modified_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '.py')
+        echo "Modified files:"
+        echo "$modified_files"
+        echo "$modified_files" >> $GITHUB_STATE
+    
     - name: Install Frappe framework
       run: |
         pip install frappe
